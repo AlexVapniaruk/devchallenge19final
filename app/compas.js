@@ -1,19 +1,19 @@
+const handleOrientationEvent = (frontToBack, leftToRight, rotateDegrees) => {
+    console.log(frontToBack, leftToRight, rotateDegrees)
+};
+
 export const initCompass = () => {
-    const compassWrap = document.querySelector('.compass-wrap');
-    navigator.permissions.query({ name: 'accelerometer' }).then((result) => {
-        if (result.state === 'granted') {
-            alert('permisions granded');
-            const acl = new Accelerometer({ frequency: 60 });
-            acl.addEventListener("reading", () => {
-                compassWrap.innerHTML(`x: ${acl.x} y:${acl.y} z:${acl.z}`);
-            });
-
-            acl.start();
-        } else if (result.state === 'prompt') {
-            alert('permisions not granded');
-        }
-        // Don't do anything if the permission was denied.
-    });
-
-
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", (event) => {
+          const rotateDegrees = event.alpha; // alpha: rotation around z-axis
+          const leftToRight = event.gamma; // gamma: left to right
+          const frontToBack = event.beta; // beta: front back motion
+     
+          handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+        }, true);
+     }else{
+        console.log('here');
+     }
+     
+     
 }
