@@ -24,6 +24,17 @@
 
 .compass {
   width: 100px;
+  transition-duration: 0.8s;
+  transition-property: transform;
+  -webkit-transition-duration: 0.8s;
+  -moz-transition-duration: 0.8s;
+  -o-transition-duration: 0.8s;
+  transition-duration: 0.8s;
+
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+   transition-property: transform;
 }
 
 .selected-icon-wrap {
@@ -55,6 +66,26 @@
   outline: none;
   border: none;
   background-color: black;
-  padding: 0.5rem;
+  padding: 0.75rem;
   color: white;
+  display: flex;
+}
+
+.selection-buttons__button--selected {
+  background: rgb(223, 38, 38);
+}
+
+.selection-buttons__button span{
+  flex-grow: 1;
+}
+
+.selection-buttons__button i {
+  font-size: 1rem;
+}
+
+.selected-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
 }

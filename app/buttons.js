@@ -1,36 +1,57 @@
+import { initCompass } from "./compas";
+
 const buttons = [
     {
         key: 'rocket',
-        name: 'Ракета'
+        name: 'Ракета',
+        icon: 'fa-solid fa-rocket'
     },
     {
         key: 'drone',
-        name: 'Безпілотник'
+        name: 'Безпілотник',
+        icon: 'fa-solid fa-shuttle-space'
     },
     {
         key: 'plane',
-        name: 'Літак'
+        name: 'Літак',
+        icon: 'fa-solid fa-jet-fighter-up'
     },
     {
         key: 'helicopter',
-        name: 'Гелікоптер'
+        name: 'Гелікоптер',
+        icon: 'fa-solid fa-helicopter'
     },
     {
         key: 'explosion',
-        name: 'Вибух'
+        name: 'Вибух',
+        icon: 'fa-solid fa-explosion'
     },
     {
         key: 'test',
-        name: 'Тест'
+        name: 'Тест',
+        icon: 'fa-solid fa-wrench'
     }
 ];
 
 const createButton = (button) => {
     const newButton = document.createElement('button');
     newButton.className = 'selection-buttons__button';
-    newButton.innerHTML = button.name;
+    const icon = document.createElement('i');
+    icon.className = button?.icon;
+    const label = document.createElement('span');
+    label.innerHTML = button.name;
+    newButton.appendChild(icon);
+    newButton.appendChild(label);
+    
     newButton.onclick = function() {
-        alert(button.key);
+        const selectedButton = document.querySelector('.selection-buttons__button--selected');
+        if(selectedButton) {
+            selectedButton.className = 'selection-buttons__button';
+        }
+        initCompass();
+        const selectedIcon = document.querySelector('.selected-icon');
+        selectedIcon.innerHTML = icon.outerHTML;
+        newButton.className = 'selection-buttons__button selection-buttons__button--selected'
     };
     return newButton;
 }
